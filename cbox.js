@@ -23,7 +23,6 @@ $(document).ready(function () {
     var cbox = jQuery('#cbox');
     var gist = 'https://api.github.com/gists/' + cbox.data('gist');
     var domain = document.domain;
-    var domain = 'ilz.me';
 
     marked.setOptions({
         gfm: true,
