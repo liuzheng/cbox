@@ -4,11 +4,18 @@
     <meta charset="UTF-8">
     <title>CBox Test</title>
     <script src="jquery-1.12.0.min.js"></script>
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/editor/0.1.0/editor.css">
+    <script src="//cdn.jsdelivr.net/editor/0.1.0/editor.js"></script>
+    <script src="//cdn.jsdelivr.net/editor/0.1.0/marked.js"></script>
     <script src="cbox.js"></script>
 </head>
 <body>
-<div id="cbox" data-gist="liuzheng" style="width: 50%">
-    <textarea></textarea>
+<div id="cbox" data-gist="ee6ffe6c9f1ead666531" style="width: 50%">
+    <div style="border:1px solid #ddd;border-bottom:1px solid #ccc;border-radius:3px">
+        <input id="nick" type="text" placeholder="您的昵称，这将会显示在评论中" style="width:99%;border-radius:3px"/>
+        <input id="email" type="email" placeholder="留下您的邮箱，邮箱不会显示在评论中" style="width:99%;"/>
+        <textarea id="editor" placeholder="Content here ...."></textarea>
+    </div>
 </div>
 </body>
 </html>
