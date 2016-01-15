@@ -1,7 +1,4 @@
-var link = document.createElement('link');
-link.rel = 'stylesheet';
-link.href = 'https://assets-cdn.github.com/assets/gist/embed-b7ba3882812e204df7d37b2cebe14079b8f58e84562a71b32c4e6ff81af31e23.css';
-document.head.appendChild(link);
+
 
 function makecomments() {
     var contant = {};
@@ -13,9 +10,9 @@ function makecomments() {
         }
         if (contant) {
             for (var i in contant) {
-                console.log(contant[i]['name'] + ':' + contant[i]['text']);
                 var gist = document.createElement('div');
-                gist.innerHTML = '<div class="gist"><div class="gist-file"><div class="gist-data"><div class="js-gist-file-update-container js-task-list-container file-box"><div class="file"><div class="blob-wrapper data type-text"><table class="highlight tab-size js-file-line-container" data-tab-size="8"><tbody><tr><td class="blob-code blob-code-inner js-file-line">' + contant[i]['text'] + '</td></tr></tbody></table></div></div></div></div><div class="gist-meta"><a href="https://github.com/liuzheng712" style="float: right"> Power by liuzheng712</a><a href="#">' + contant[i]['name'] + '</a></div></div></div>';
+                gist.innerHTML = '<div class="gist"><div class="editor-preview editor-preview-active" style="height:' +
+                    ' initial;width: initial;position: initial;margin: 10px;">' + marked(contant[i]['text']) + '</div><div class="gist-meta"><a href="https://github.com/liuzheng712" style="float: right"> Power by liuzheng712</a><a href="#">' + contant[i]['name'] + '</a></div></div>';
                 textarea.before(gist);
             }
         }

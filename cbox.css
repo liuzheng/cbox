@@ -1,0 +1,52 @@
+#cbox {
+    width: 100%;
+}
+
+#cbox, #cbox * {
+    color: black;
+    border-color: white;
+    text-shadow: none;
+    -moz-box-shadow: none;
+    -o-box-shadow: none;
+    box-shadow: none;
+    background: #ffffff;
+    background-color: #ffffff;
+}
+
+.separator {
+    font-style: initial
+}
+
+.CodeMirror-cursor {
+    border-color: black !important;
+}
+
+.gist {
+    font-size: 16px;
+    color: #333;
+    direction: ltr;
+    text-align: left;
+    margin-bottom: 1em;
+    font-family: Consolas, "Liberation Mono", Menlo, Courier, monospace;
+    border: 1px solid #ddd !important;
+    border-bottom: 1px solid #ccc !important;
+    border-radius: 3px
+}
+
+.gist .gist-meta {
+    padding: 10px;
+    overflow: hidden;
+    font: 12px Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    color: #767676;
+    background-color: #f7f7f7 !important;
+    border-radius: 0 0 2px 2px;
+    border: 1px solid #ddd !important;
+}
+
+.gist .gist-meta a {
+    font-weight: bold;
+    color: #666;
+    text-decoration: none;
+    border: 0;
+    background-color: #f7f7f7 !important;
+}
