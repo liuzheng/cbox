@@ -1,8 +1,40 @@
 <html>
- <head>
-   <title>CBox</title>
- </head>
- <body>
-  <h1>Hello World</h1>
- </body>
+<head>
+    <title>CBox</title>
+</head>
+<body>
+<h1>Hello World</h1>
+<script>
+    function r(f) {
+        /in/.test(document.readyState) ? setTimeout(r, 9, f) : f()
+    }
+    r(function () {/*code to run*/
+        var sock = new WebSocket("ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws");
+        sock.onopen = function () {
+            sock.send('getID');
+//            sock.send('T' + termID);
+            //sock.send('C' + rc.x.toString() + "," + rc.y.toString());
+        };
+        sock.onclose = function () {
+            sock = new WebSocket("ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws");
+            sock.onopen = function () {
+//                sock.send('T' + termID);
+            };
+        };
+        var nick, online;
+        sock.onmessage = function (e) {
+            var data = JSON.parse(e.data);
+            for (i in data) {
+                if (i == 'users') {
+                    nick = data[i]['nick'];
+                    online = data[i]['online']
+                } else if (i == 'msg') {
+                    console.log(data[i])
+                }
+
+            }
+        };
+    });
+</script>
+</body>
 </html>
