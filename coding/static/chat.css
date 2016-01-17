@@ -1,0 +1,654 @@
+
+/*********************
+* LCB Styles
+*********************/
+@font-face {
+  font-family: 'Pacifico';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Pacifico Regular'), local('Pacifico-Regular'), url('pacifico.woff') format('woff');
+}
+/*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+/*!
+ *  Font Awesome 4.2.0 by @davegandy - http://fontawesome.io - @fontawesome
+ *  License - http://fontawesome.io/license (Font: SIL OFL 1.1, CSS: MIT License)
+ */
+/*
+ * Default jvFloat theme.
+ * modify it as you wish!
+ */
+
+
+/**
+ * selectize.css (v0.12.0)
+ * Copyright (c) 2013–2015 Brian Reavis & contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ *
+ * @author Brian Reavis <brian@thirdroute.com>
+ */
+
+
+/**
+ * selectize.bootstrap3.css (v0.12.0) - Bootstrap 3 Theme
+ * Copyright (c) 2013–2015 Brian Reavis & contributors
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this
+ * file except in compliance with the License. You may obtain a copy of the License at:
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under
+ * the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific language
+ * governing permissions and limitations under the License.
+ *
+ * @author Brian Reavis <brian@thirdroute.com>
+ */
+
+
+/* originally authored by Nick Pettit - https://github.com/nickpettit/glide */
+
+/*********************
+ * Rooms
+ *********************/
+.lcb-client {
+  background: #222;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-direction: row;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-transition: -webkit-transform 0.1s ease;
+  -moz-transition: -moz-transform 0.1s ease;
+  -ms-transition: -ms-transform 0.1s ease;
+  transition: transform .1s ease;
+}
+@media (max-width: 767px) {
+  .lcb-client {
+    padding-top: 43px;
+  }
+  .lcb-client.lcb-sidebar-opened {
+    -webkit-transform: translateX(200px);
+    -moz-transform: translateX(200px);
+    -ms-transform: translateX(200px);
+    -o-transform: translateX(200px);
+    transform: translateX(200px);
+  }
+  .lcb-client.lcb-sidebar-opened .modal {
+    -webkit-transform: translateX(-200px);
+    -moz-transform: translateX(-200px);
+    -ms-transform: translateX(-200px);
+    -o-transform: translateX(-200px);
+    transform: translateX(-200px);
+  }
+}
+
+.lcb-panes {
+  -moz-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+
+
+
+
+.lcb-room,
+.lcb-room-chat,
+.lcb-room-main {
+  -moz-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+.lcb-room {
+  -moz-flex-direction: column;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-transition: -webkit-transform 0.1s ease;
+  -moz-transition: -moz-transform 0.1s ease;
+  -ms-transition: -ms-transform 0.1s ease;
+  transition: transform .1s ease;
+}
+@media (max-width: 991px) {
+  .lcb-room.lcb-room-sidebar-opened {
+    -webkit-transform: translateX(-200px);
+    -moz-transform: translateX(-200px);
+    -ms-transform: translateX(-200px);
+    -o-transform: translateX(-200px);
+    transform: translateX(-200px);
+  }
+}
+.lcb-room-chat {
+  -moz-flex-direction: column;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+.lcb-room-main {
+  -moz-flex-direction: row;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.lcb-room-header {
+  background: #f3f3f3;
+  height: 60px;
+  min-height: 60px;
+  line-height: 60px;
+  padding: 0 15px;
+  border-bottom: 1px #ddd solid;
+  position: relative;
+  box-shadow: 0 4px 5px -5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-direction: row;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+.lcb-room-meta {
+  padding-right: 15px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  -moz-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.lcb-room-heading {
+  font-size: 24px;
+  font-weight: 300;
+  color: #555;
+  line-height: inherit;
+  margin: 0;
+  margin-right: 5px;
+  display: inline;
+}
+@media (max-width: 767px) {
+  .lcb-room-heading {
+    font-size: 20px;
+  }
+}
+.lcb-room-heading .password {
+  font-size: 14px;
+  cursor: default;
+}
+.lcb-room-heading-loud {
+  text-transform: uppercase;
+}
+.lcb-room-description {
+  font-weight: 300;
+  color: #9f9f9f;
+  margin: 0;
+  display: inline;
+}
+@media (max-width: 767px) {
+  .lcb-room-description {
+    font-size: 12px;
+  }
+}
+.lcb-room-header-actions .btn-action {
+  background: #eee;
+  color: #777;
+  border-color: #ddd;
+}
+.lcb-room-header-actions .btn-action:hover {
+  background: #f7f7f7;
+}
+.lcb-room-participants {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: #777;
+}
+@media (max-width: 767px) {
+  .lcb-room-participants {
+    font-size: 12px;
+  }
+}
+.lcb-entry {
+  background: #fff;
+  height: 70px;
+  min-height: 70px;
+  border-top: 1px #eee solid;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+}
+@media (max-width: 767px) {
+  .lcb-entry {
+    height: 42px;
+  }
+}
+.lcb-entry-input {
+  max-height: 100%;
+  padding: 15px;
+  border: none;
+  resize: none;
+  -moz-flex: 1;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+}
+.lcb-entry-input:focus {
+  outline: none;
+}
+@media (max-width: 767px) {
+  .lcb-entry-input {
+    padding: 10px;
+  }
+}
+.lcb-entry-action {
+  background: none;
+  font-size: 18px;
+  color: #999;
+}
+.lcb-entry-action:active,
+.lcb-entry-action:focus {
+  outline: none !important;
+  box-shadow: none !important;
+}
+.lcb-entry-action:active {
+  color: #999 !important;
+}
+.lcb-entry-button {
+  background: none;
+  color: #777;
+  border: none;
+  outline: none;
+  padding: 0 25px;
+  border-radius: 0;
+}
+.lcb-entry-button:hover {
+  color: #999;
+}
+.lcb-entry-button:active {
+  color: #555;
+}
+.lcb-room-sidebar-opened .lcb-room-toggle-sidebar {
+  background: #fefefe;
+}
+.lcb-room-toggle-sidebar .fa {
+  -ms-transition: all 0.2s ease-in;
+  -webkit-transition: all 0.2s ease-in;
+  -moz-transition: all 0.2s ease-in;
+  -o-transition: all 0.2s ease-in;
+  transition: all 0.2s ease-in;
+}
+.lcb-room-sidebar-opened .lcb-room-toggle-sidebar .fa {
+  -webkit-transform: rotateY(180deg);
+  -moz-transform: rotateY(180deg);
+  -ms-transform: rotateY(180deg);
+  -o-transform: rotateY(180deg);
+  transform: rotateY(180deg);
+}
+.lcb-room-sidebar {
+  background: #f7f7f7;
+  width: 20%;
+  min-width: 160px;
+  max-width: 240px;
+  border-left: 1px #ddd solid;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-direction: column;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+}
+@media (max-width: 991px) {
+  .lcb-room-sidebar {
+    width: 200px;
+    height: 100%;
+    padding: 0;
+    padding-left: 3px;
+    border: none;
+    position: absolute;
+    top: 0;
+    right: -200px;
+  }
+}
+@media (min-width: 991px) {
+  .lcb-room-sidebar {
+    display: none;
+  }
+  .lcb-room-sidebar-opened .lcb-room-sidebar {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flexbox;
+    display: -ms-flex;
+    display: flex;
+  }
+}
+.lcb-room-sidebar-group {
+  min-height: 36px;
+  overflow: hidden;
+  border-bottom: 1px #ddd solid;
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flexbox;
+  display: -ms-flex;
+  display: flex;
+  -moz-flex-direction: column;
+  -webkit-box-direction: normal;
+  -moz-box-direction: normal;
+  -webkit-box-orient: vertical;
+  -moz-box-orient: vertical;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -moz-flex: 1 0 0;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
+}
+.lcb-room-sidebar-header {
+  min-height: inherit;
+  line-height: 36px;
+  padding: 0 10px;
+  border-bottom: 1px #ddd solid;
+  position: relative;
+}
+.lcb-room-sidebar-heading {
+  height: 36px;
+  line-height: 36px;
+  font-size: 13px;
+  font-weight: 400;
+  margin: 0;
+}
+.lcb-room-sidebar-heading .fa {
+  margin-right: 4px;
+}
+.lcb-room-sidebar-list,
+.lcb-room-sidebar-item {
+  padding: 0;
+  margin: 0;
+}
+.lcb-room-sidebar-list {
+  overflow: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.lcb-room-sidebar-item {
+  background: #fff;
+  font-size: 12px;
+  padding: 5px;
+  margin: 0;
+  border-bottom: 1px #eee solid;
+  display: block;
+  position: relative;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lcb-room-sidebar-item:last-child {
+  border-bottom: none;
+}
+.lcb-room-sidebar-user {
+  min-height: 40px;
+}
+.lcb-room-sidebar-user-name {
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  margin-left: 36px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lcb-room-sidebar-user-username {
+  color: #888;
+  font-size: 12px;
+  line-height: 13px;
+  margin-left: 36px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.lcb-room-sidebar-user-avatar {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 5px;
+  left: 5px;
+}
+.lcb-room-poke:hover {
+  cursor: pointer;
+}
+.lcb-room-sidebar-files-add {
+  width: 24px;
+  height: 24px;
+  font-size: 11px;
+  padding: 0;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+}
+.lcb-room-sidebar-files-add:focus,
+.lcb-room-sidebar-files-add:active {
+  outline: none !important;
+}
+.lcb-room-sidebar-file-icon {
+  position: absolute;
+  top: 8px;
+  left: 7px;
+}
+.lcb-room-sidebar-file-meta {
+  font-size: 11px;
+  color: #777;
+  margin-left: 20px;
+}
+.lcb-room-sidebar-file-name {
+  font-size: 13px;
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+@-moz-document url-prefix() {
+  .lcb-room-meta-text {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+/*********************
+ * Messages
+ *********************/
+.lcb-messages {
+  background: #fff;
+  padding: 0;
+  margin: 0;
+  overflow: auto;
+  -webkit-overflow-scrolling: touch;
+  -moz-flex: 1 0 0;
+  -webkit-box-flex: 1;
+  -moz-box-flex: 1;
+  -webkit-flex: 1 0 0;
+  -ms-flex: 1 0 0;
+  flex: 1 0 0;
+  -webkit-transform: translate3d(0, 0, 0);
+  -moz-transform: translate3d(0, 0, 0);
+  -ms-transform: translate3d(0, 0, 0);
+  -o-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+}
+.lcb-message {
+  min-height: 47px;
+  border-top: 1px #eee solid;
+  padding: 7px;
+  font-size: 13px;
+  margin: 0;
+  display: block;
+  position: relative;
+}
+.lcb-message:first-child {
+  border-top: none;
+}
+.lcb-message.lcb-message-fragment {
+  min-height: 0;
+  margin-top: -3.5px;
+  border-top: none;
+}
+.lcb-message.lcb-message-own {
+  background: #fcffd8;
+}
+.lcb-message.lcb-message-mentioned {
+  background: #ffe9ee;
+}
+.lcb-message.lcb-message-mentioned:before {
+  background: #f22472;
+  width: 3px;
+  height: 100%;
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.lcb-message pre {
+  background: none;
+  border-width: 3px;
+  border-top: none;
+  border-bottom: none;
+  margin-bottom: 3px;
+}
+.lcb-message .thumbnail {
+  max-width: 100%;
+  overflow: hidden;
+  display: inline-block;
+  margin: 0;
+}
+.lcb-message .thumbnail img {
+  height: 200px;
+  width: auto;
+  object-fit: cover;
+}
+.lcb-message-avatar {
+  position: absolute;
+}
+.lcb-message-meta {
+  margin-left: 40px;
+}
+.lcb-message-name {
+  color: #666;
+  font-weight: 700;
+  margin-bottom: 5px;
+  display: block;
+}
+.lcb-message-name .lcb-message-username {
+  color: #aaa;
+  font-weight: 400;
+}
+.lcb-message-time {
+  color: #bbb;
+  position: absolute;
+  top: 7px;
+  right: 7px;
+}
+.lcb-message-text {
+  word-wrap: break-word;
+}
+.lcb-message-text pre {
+  padding: 10px;
+  margin: 0;
+  border: 3px solid #cccccc;
+  border-top: none;
+  border-bottom: none;
+  border-radius: 4px;
+}
+.lcb-message-mention {
+  font-weight: bold;
+}
+@-moz-document url-prefix() {
+  .lcb-message-text {
+    width: 100%;
+    display: table;
+    table-layout: fixed;
+    word-break: break-all;
+  }
+  .lcb-message-text pre {
+    white-space: pre-wrap;
+  }
+}
