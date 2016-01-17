@@ -1,14 +1,16 @@
 <html>
 <head>
     <title>CBox</title>
+    <script>
+    function r(f) {
+        /in/.test(document.readyState) ? setTimeout(r, 9) : f()
+    }
+    </script>
 </head>
 <body>
 <h1>Hello World</h1>
 <script>
-    function r(f) {
-        /in/.test(document.readyState) ? setTimeout(r, 9, f) : f()
-    }
-    r(function () {/*code to run*/
+    r(function () {
         var sock = new WebSocket("ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws");
         sock.onopen = function () {
             sock.send('getID');
