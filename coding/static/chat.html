@@ -9,57 +9,17 @@
 
 </head>
 <body>
-<div class="lcb-client">
-    <section class="lcb-panes">
-        <div class="lcb-room lcb-pane lcb-room-sidebar-opened ">
-            <header class="lcb-room-header">
-                <div class="lcb-room-meta">
-                    <div class="lcb-room-meta-text">
-                        <h2 class="lcb-room-heading">
-                            <span class="slug">CBox</span>
-                        </h2>
-                        <!--<p class="lcb-room-description">{{description}}</p>-->
-                    </div>
-                </div>
-                <!--<div class="lcb-room-header-actions">-->
-                <!--<div class="btn-group">-->
-                <!--{{#if iCanEdit}}-->
-                <!--<a class="btn btn-action hidden-xs show-edit-room"-->
-                <!--title="<$ __('Edit Room') $>" aria-label="<$ __('Edit Room') $>">-->
-                <!--<i class="fa fa-edit"></i>-->
-                <!--</a>-->
-                <!--{{/if}}-->
-                <!--<a class="btn btn-action hidden-xs" title="<$ __('Chat History') $>" aria-label="<$ __('Chat History') $>"-->
-                <!--href="./transcript?room={{ id }}" target="_blank">-->
-                <!--<i class="fa fa-history"></i>-->
-                <!--</a>-->
-                <!--</div>-->
-                <!--<div class="btn-group">-->
-                <!--<% if settings.files.enable %>-->
-                <!--<a class="btn btn-action hidden-xs lcb-upload-trigger" title="<$ __('Upload Files') $>" aria-label="<$ __('Upload Files') $>" href="#">-->
-                <!--<i class="fa fa-upload"></i>-->
-                <!--</a>-->
-                <!--<% endif %>-->
-                <!--<% if settings.giphy.enable %>-->
-                <!--<a class="btn btn-action hidden-xs lcb-giphy" href="#lcb-giphy" title="<$ __('Giphy') $>" aria-label="<$ __('Giphy') $>" data-toggle="modal">-->
-                <!--<i class="fa fa-gift"></i>-->
-                <!--</a>-->
-                <!--<% endif %>-->
-                <!--</div>-->
-                <!--<a class="btn btn-action lcb-room-toggle-sidebar" href="#">-->
-                <!--<i class="fa fa-chevron-left" aria-label="<$ __('Toggle Sidebar') $>"></i>-->
-                <!--</a>-->
-                <!--</div>-->
-            </header>
-            <!-- lcb-room-header end -->
-            <div class="lcb-room-main">
-                <div class="lcb-room-chat">
-                    <ul class="lcb-messages" aria-live="polite">
-                        <li class="lcb-message   lcb-message-own " data-owner="5699e9b180b028868aa818e4">
-                            <img class="lcb-message-avatar lcb-avatar lcb-room-poke"
-                                 src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
+<div class="lcb-chat">
+    <div class="lcb-chat-header">
+        <p>CBox</p>
+    </div>
 
-                            <div class="lcb-message-meta">
+    <ul class="lcb-messages" aria-live="polite">
+        <li class="lcb-message   lcb-message-own " data-owner="5699e9b180b028868aa818e4">
+            <img class="lcb-message-avatar lcb-avatar lcb-room-poke"
+                 src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
+
+            <div class="lcb-message-meta">
                 <span class="lcb-message-name">
                     <span class="lcb-room-poke">
                         <span class="lcb-message-displayname">
@@ -70,68 +30,65 @@
                         </span>
                     </span>
                 </span>
-                                <time class="lcb-message-time" title="2016-01-16T06:57:51.423Z">Yesterday at 2:57 PM
-                                </time>
-                                <div class="lcb-message-text">hello</div>
-                            </div>
-                        </li>
-                        <li class="lcb-message   lcb-message-own " data-owner="5699e9b180b028868aa818e4">
-                            <img class="lcb-message-avatar lcb-avatar lcb-room-poke"
-                                 src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
-
-                            <div class="lcb-message-meta">
-                <span class="lcb-message-name">
-                    <span class="lcb-room-poke">
-                        <span class="lcb-message-displayname">
-                            liuzheng
-                        </span>
-                        <span class="lcb-message-username">
-                            @liuzheng
-                        </span>
-                    </span>
-                </span>
-                                <time class="lcb-message-time" title="2016-01-17T08:37:15.227Z">Today at 4:37 PM</time>
-                                <div class="lcb-message-text">goog</div>
-                            </div>
-                        </li>
-                    </ul>
-                    <form class="lcb-entry">
-                        <textarea class="lcb-entry-input" placeholder="Got something to say?" autofocus></textarea>
-                        <button type="submit" class="lcb-entry-button" aria-label="Send">
-                            <i class="fa fa-paper-plane"></i>
-                        </button>
-                    </form>
-                </div>
-                <!-- lcb-chat end -->
-                <div class="lcb-room-sidebar">
-                    <div class="lcb-room-sidebar-group lcb-room-sidebar-users">
-                        <header class="lcb-room-sidebar-header">
-                            <h3 class="lcb-room-sidebar-heading">
-                                <i class="fa fa-users"></i> Who's Here(<span
-                                    class="lcb-room-sidebar-items-count"></span>)
-                            </h3>
-                        </header>
-                        <ul class="lcb-room-sidebar-list"></ul>
-                    </div>
-                    <!--<% if settings.files.enable %>-->
-                    <!--<div class="lcb-room-sidebar-group lcb-room-sidebar-files">-->
-                    <!--<header class="lcb-room-sidebar-header">-->
-                    <!--<h3 class="lcb-room-sidebar-heading">-->
-                    <!--<i class="fa fa-file-text"></i> <$ __('Files') $>-->
-                    <!--</h3>-->
-                    <!--<button class="btn lcb-room-sidebar-files-add lcb-upload-trigger">-->
-                    <!--<i class="fa fa-plus" aria-label="<$ __('Upload Files') $>"></i>-->
-                    <!--</button>-->
-                    <!--</header>-->
-                    <!--<ul class="lcb-room-sidebar-list"></ul>-->
-                    <!--</div>-->
-                    <!--<% endif %>-->
-                </div>
-                <!-- lcb-room-sidebar end -->
+                <time class="lcb-message-time" title="2016-01-16T06:57:51.423Z">Yesterday at 2:57 PM
+                </time>
+                <div class="lcb-message-text">hello</div>
             </div>
+        </li>
+        <li class="lcb-message   lcb-message-own " data-owner="5699e9b180b028868aa818e4">
+            <img class="lcb-message-avatar lcb-avatar lcb-room-poke"
+                 src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
+
+            <div class="lcb-message-meta">
+                <span class="lcb-message-name">
+                    <span class="lcb-room-poke">
+                        <span class="lcb-message-displayname">
+                            liuzheng
+                        </span>
+                        <span class="lcb-message-username">
+                            @liuzheng
+                        </span>
+                    </span>
+                </span>
+                <time class="lcb-message-time" title="2016-01-17T08:37:15.227Z">Today at 4:37 PM</time>
+                <div class="lcb-message-text">goog</div>
+            </div>
+        </li>
+    </ul>
+    <form class="lcb-entry">
+        <textarea class="lcb-entry-input" placeholder="Got something to say?" autofocus></textarea>
+        <button type="submit" class="lcb-entry-button" aria-label="Send">
+            <i class="fa fa-paper-plane"></i>
+        </button>
+    </form>
+</div>
+
+<div class="lcb-room lcb-room-sidebar-opened">
+    <div class="lcb-room-sidebar">
+        <div class="lcb-room-sidebar-group lcb-room-sidebar-users">
+            <header class="lcb-room-sidebar-header">
+                <h3 class="lcb-room-sidebar-heading">
+                    <i class="fa fa-users"></i> Who's Here(<span
+                        class="lcb-room-sidebar-items-count"></span>)
+                </h3>
+            </header>
+            <ul class="lcb-room-sidebar-list">
+                <li class="lcb-room-sidebar-item lcb-room-sidebar-user" data-id="5699e9b180b028868aa818e4">
+                    <img class="lcb-avatar lcb-room-sidebar-user-avatar lcb-room-poke"
+                         src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
+
+                    <div class="lcb-room-sidebar-user-meta lcb-room-poke">
+            <span class="lcb-room-sidebar-user-name">
+                liuzheng
+            </span>
+            <span class="lcb-room-sidebar-user-username">
+                @liuzheng
+            </span>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <!-- lcb-room end -->
-    </section>
+    </div>
 </div>
 
 </body>
