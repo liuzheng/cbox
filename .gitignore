@@ -1,0 +1,5 @@
+.idea/
+coding/.gitignore
+node_modules/
+package.json
+.DS_Store
