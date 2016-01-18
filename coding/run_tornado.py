@@ -18,6 +18,7 @@ import tornado.websocket
 import tornado.httpserver
 import uuid
 import json
+import time
 
 settings = {
     "static_path": os.path.join(os.path.dirname(__file__), "./static/"),
@@ -36,32 +37,52 @@ class Chat(tornado.websocket.WebSocketHandler):
     def check_origin(self, origin):
         return True
 
-    def getAll(self):
+    def Online(self):
         user = []
         for u in Chat.users:
             us = Chat.users[u]
-            user.append({'nick': us.nick})
-        data = {'users': {'id': self.userID, 'nick': self.nick, 'online': user}}
-        return data
+            user.append({'nick': us.nick, 'uid': us.userID, 'avatar': us.avatar})
+        # data = {'users': {'id': self.userID, 'nick': self.nick, 'online': user}}
+        # return data
+        for u in Chat.users:
+            us = Chat.users[u]
+            us.write_message(json.dumps({'online': user}))
+
+    def myInfo(self):
+        self.write_message(json.dumps({'myinfo': {'uid': self.userID, 'nick': self.nick, 'avatar': self.avatar}}))
 
     def open(self):
         print "term socket open"
         self.userID = str(uuid.uuid4())
         self.nick = 'Anonymous'
+        self.avatar = 'http://2.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?30'
         Chat.users[self.userID] = self
-
-        self.write_message(json.dumps(self.getAll()))
+        self.myInfo()
+        self.Online()
         # self.pty()
 
     def on_message(self, msg):
-        self.write_message(json.dumps({'msg': msg}))
+        msg = json.loads(msg)
+        for k in msg:
+            if k == 'msg':
+                self.SendAllMSG(msg[k])
+                # elif k == 'myinfo':
+                # for km, vm in v:
+                #     self[km] = vm
+
+    def SendAllMSG(self, msg):
+        data = {'msgFrom': {'nick': self.nick, 'timestamp': time.time(), 'uid': self.userID, 'msg': msg,
+                            'avatar': self.avatar}}
+        for u in Chat.users:
+            us = Chat.users[u]
+            # if us.userID == self.userID:
+            #     continue
+            us.write_message(json.dumps(data))
 
     def on_close(self):
         print "term close"
         del Chat.users[self.userID]
-        for u in Chat.users:
-            us = Chat.users[u]
-            us.write_message(json.dumps(self.getAll()))
+        self.Online()
         self.close()
 
 
