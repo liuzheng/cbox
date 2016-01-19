@@ -36,7 +36,6 @@ $(document).ready(function () {
                 $('ul.lcb-messages').append(li);
                 var Box = document.getElementsByClassName('lcb-messages')[0];
                 Box.scrollTop = Box.scrollHeight;
-
             }
 
         }
