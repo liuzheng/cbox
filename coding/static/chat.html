@@ -11,110 +11,91 @@
     <script src="checktime.js"></script>
 </head>
 <body>
-<div class="lcb-chat">
-    <div class="lcb-chat-header">
-        <p>CBox</p>
-    </div>
+<div ng-app="Chat" ng-controller="chatBoxCtrl">
+    <div class="lcb-chat">
+        <div class="lcb-chat-header">
+            <p>CBox</p>
+        </div>
 
-    <ul class="lcb-messages" aria-live="polite">
-        <li class="lcb-message   lcb-message-own " data-owner="5699e9b180b028868aa818e4">
-            <img class="lcb-message-avatar lcb-avatar lcb-room-poke"
-                 src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
+        <ul class="lcb-messages" aria-live="polite" style="height:{[{lcbMessagesHeight}]}px;">
+            <li class="lcb-message lcb-message-own " ng-repeat="msg in messages" data-owner="{[{msg.uid}]}">
+                <img class="lcb-message-avatar lcb-avatar lcb-room-poke"
+                     ng-src="{[{ msg.avatar }]}">
 
-            <div class="lcb-message-meta">
+                <div class="lcb-message-meta">
                 <span class="lcb-message-name">
                     <span class="lcb-room-poke">
                         <span class="lcb-message-displayname">
-                            liuzheng
+                            {[{msg.nick}]}
                         </span>
                         <span class="lcb-message-username">
-                            @liuzheng
+                            @{[{msg.nick}]}
                         </span>
                     </span>
                 </span>
-                <time class="lcb-message-time" title="1453024388"></time>
-                <div class="lcb-message-text">hello</div>
-            </div>
-        </li>
-        <li class="lcb-message   lcb-message-own " data-owner="5699e9b180b028868aa818e4">
-            <img class="lcb-message-avatar lcb-avatar lcb-room-poke"
-                 src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
-
-            <div class="lcb-message-meta">
-                <span class="lcb-message-name">
-                    <span class="lcb-room-poke">
-                        <span class="lcb-message-displayname">
-                            liuzheng
-                        </span>
-                        <span class="lcb-message-username">
-                            @liuzheng
-                        </span>
-                    </span>
-                </span>
-                <time class="lcb-message-time" title="1453034388"></time>
-                <div class="lcb-message-text">goog</div>
-            </div>
-        </li>
-    </ul>
-    <div class="lcb-entry">
-        <textarea  class="lcb-entry-input" placeholder="Got something to say?" autofocus></textarea>
-        <button class="lcb-entry-button" aria-label="Send">
-            <i class="fa fa-paper-plane"></i>
-        </button>
+                    <time class="lcb-message-time" title="{[{msg.timestamp}]}"></time>
+                    <div class="lcb-message-text">{[{msg.msg}]}</div>
+                </div>
+            </li>
+        </ul>
+        <div class="lcb-entry">
+            <textarea class="lcb-entry-input" placeholder="Got something to say?" autofocus ng-enter="sendMSG()" ng-model="msg"></textarea>
+            <button class="lcb-entry-button" aria-label="Send" ng-click="sendMSG()">
+                <i class="fa fa-paper-plane"></i>
+            </button>
+        </div>
     </div>
-</div>
 
-<div class="lcb-room lcb-room-sidebar-opened">
-    <div class="lcb-room-sidebar">
-        <div class="lcb-room-sidebar-group lcb-room-sidebar-users">
-            <header class="lcb-room-sidebar-header">
-                <h3 class="lcb-room-sidebar-heading">
-                    <i class="fa fa-users"></i> Who's Here(<span
-                        class="lcb-room-sidebar-items-count"></span>)
-                </h3>
-            </header>
-            <ul class="lcb-room-sidebar-list">
-                <li class="lcb-room-sidebar-item lcb-room-sidebar-user" data-id="5699e9b180b028868aa818e4">
-                    <img class="lcb-avatar lcb-room-sidebar-user-avatar lcb-room-poke"
-                         src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
+    <div class="lcb-room lcb-room-sidebar-opened">
+        <div class="lcb-room-sidebar">
+            <div class="lcb-room-sidebar-group lcb-room-sidebar-users">
+                <header class="lcb-room-sidebar-header">
+                    <h3 class="lcb-room-sidebar-heading">
+                        <i class="fa fa-users"></i> Who's Here({[{ online.length}]})
+                    </h3>
+                </header>
+                <ul class="lcb-room-sidebar-list">
+                    <li class="lcb-room-sidebar-item lcb-room-sidebar-user" ng-repeat="user in online"
+                        data-id="{[{user.uid}]}">
+                        <img class="lcb-avatar lcb-room-sidebar-user-avatar lcb-room-poke"
+                             ng-src="{[{user.avatar}]}">
 
-                    <div class="lcb-room-sidebar-user-meta lcb-room-poke">
+                        <div class="lcb-room-sidebar-user-meta lcb-room-poke">
             <span class="lcb-room-sidebar-user-name">
-                liuzheng
+                {[{user.nick}]}
             </span>
             <span class="lcb-room-sidebar-user-username">
-                @liuzheng
+                @{[{user.nick}]}
             </span>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <div class="lcb-room-sidebar-group lcb-room-sidebar-files">
-            <header class="lcb-room-sidebar-header">
-                <h3 class="lcb-room-sidebar-heading">
-                    <i class="fa fa-file-text"></i> My Info
-                </h3>
-            </header>
-            <ul class="lcb-room-sidebar-list">
-                <li class="lcb-room-sidebar-item lcb-room-sidebar-user" data-id="5699e9b180b028868aa818e4">
-                    <img class="lcb-avatar lcb-room-sidebar-user-avatar lcb-room-poke"
-                         src="https://www.gravatar.com/avatar/5b94b74db80f0b4927fa4e25613154c7?s=30">
+                        </div>
+                    </li>
+                </ul>
+            </div>
+            <div class="lcb-room-sidebar-group lcb-room-sidebar-files">
+                <header class="lcb-room-sidebar-header">
+                    <h3 class="lcb-room-sidebar-heading">
+                        <i class="fa fa-file-text"></i> My Info
+                    </h3>
+                </header>
+                <ul class="lcb-room-sidebar-list">
+                    <li class="lcb-room-sidebar-item lcb-room-sidebar-user" data-id="{[{me.uid}]}">
+                        <img class="lcb-avatar lcb-room-sidebar-user-avatar lcb-room-poke" src="{[{me.avatar}]}">
 
-                    <div class="lcb-room-sidebar-user-meta lcb-room-poke">
-            <span class="lcb-room-sidebar-user-name" contentEditable="true">
-                liuzheng
+                        <div class="lcb-room-sidebar-user-meta lcb-room-poke">
+            <input type="text" class="lcb-room-sidebar-user-name" ng-model="me.nick" style="border: none" ng-enter="updateInfo()">
+            <span class="lcb-room-sidebar-user-username">
+                @{[{me.nick}]}
             </span>
-            <span class="lcb-room-sidebar-user-username" contentEditable="true">
-                @liuzheng
-            </span>
-                    </div>
-                </li>
-            </ul>
-            <br>
-            <br>
+                        </div>
+                    </li>
+                </ul>
+                <br>
+                <br>
+            </div>
         </div>
     </div>
 </div>
+<script src="angular.min.js"></script>
 <script src="chatjs.js"></script>
 </body>
 </html>

@@ -1,43 +1,67 @@
 /**
  * Created by liuzheng on 1/18/16.
  */
-$(document).ready(function () {
+'use strict';
+var NgAPP = angular.module('Chat', []);
+NgAPP.config(function ($interpolateProvider) {
+    $interpolateProvider.startSymbol('{[{');
+    $interpolateProvider.endSymbol('}]}');
+});
+NgAPP.directive('ngEnter', function () {
+    return function (scope, element, attrs) {
+        element.bind("keydown keypress", function (event) {
+            if (event.which === 13) {
+                scope.$apply(function () {
+                    scope.$eval(attrs.ngEnter, {$event: event});
+                });
+                event.preventDefault();
+            }
+        });
+    };
+});
+NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
     var sock = new WebSocket("ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws");
     sock.onopen = function () {
 
-//            sock.send('T' + termID);
-        //sock.send('C' + rc.x.toString() + "," + rc.y.toString());
     };
-    $('button.lcb-entry-button')[0].onclick = function () {
-        var msg = $('textarea.lcb-entry-input').val();
-        if (msg) {
-            sock.send(JSON.stringify({'msg': msg}));
+    $scope.sendMSG = function () {
+        if ($scope.msg) {
+            sock.send(JSON.stringify({'msg': $scope.msg}));
         }
 
     };
     sock.onclose = function () {
         sock = new WebSocket("ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws");
         sock.onopen = function () {
-//                sock.send('T' + termID);
         };
     };
-    var nick, online, uid, avatar;
+    $scope.messages = [{
+        msg: "请文明聊天，如让宝宝不开心，宝宝将剥夺你讲话的权利",
+        nick: "宝宝",
+        uid: "null",
+        avatar: "https://github.com/identicons/2660e83ae26ec8c77de57ae4aa9f9651.png",
+        timestamp: 1453268259.212362
+    }];
+    $scope.baobao = $scope.messages;
+    $scope.online = $scope.baobao;
+    $scope.me = {};
     sock.onmessage = function (e) {
         var data = JSON.parse(e.data);
         for (var i in data) {
             if (i == 'myinfo') {
-                nick = data[i]['nick'];
-                uid = data[i]['uid'];
-                avatar = data[i]['avatar'];
+                $scope.me['nick'] = data[i]['nick'];
+                $scope.me['uid'] = data[i]['uid'];
+                $scope.me['avatar'] = data[i]['avatar'];
             } else if (i == 'online') {
-                online = data[i]
+                $scope.online = [].concat($scope.baobao, data[i]);
             } else if (i == 'msgFrom') {
-                var li = '<li class="lcb-message lcb-message-own" data-owner="' + data[i]['uid'] + '"><img class="lcb-message-avatar lcb-avatar lcb-room-poke" src="' + data[i]['avatar'] + '"><div class="lcb-message-meta"><span class="lcb-message-name"><span class="lcb-room-poke"><span class="lcb-message-displayname">' + data[i]['nick'] + '\</span><span class="lcb-message-username">@' + data[i]['nick'] + '\</span></span></span><time class="lcb-message-time" title="' + data[i]['timestamp'] + '"\></time><div class="lcb-message-text">' + data[i]['msg'] + '\</div></div></li>';
-                $('ul.lcb-messages').append(li);
-                var Box = document.getElementsByClassName('lcb-messages')[0];
-                Box.scrollTop = Box.scrollHeight;
-            }
+                $scope.messages.push(data[i]);
 
+            }
         }
+        $scope.lcbMessagesHeight = $('div.lcb-chat').height() - 150;
+        $scope.$apply();
+        var Box = document.getElementsByClassName('lcb-messages')[0];
+        Box.scrollTop = Box.scrollHeight;
     };
 });

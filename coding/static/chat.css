@@ -237,7 +237,6 @@
     background: #fff;
     width: 350px;
     height: 70px;
-    min-height: 70px;
     border-top: 1px #eee solid;
     display: -webkit-flex;
     display: -moz-flex;
@@ -626,8 +625,6 @@
 
 .lcb-message-avatar {
     position: absolute;
-    width: 30px;
-    height: 30px;
 }
 
 .lcb-message-meta {
@@ -680,4 +677,8 @@
     .lcb-message-text pre {
         white-space: pre-wrap;
     }
+}
+.lcb-avatar{
+    width: 30px;
+    height: 30px;
 }
