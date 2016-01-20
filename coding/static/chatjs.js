@@ -40,7 +40,7 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
         nick: "宝宝",
         uid: "null",
         avatar: "https://github.com/identicons/2660e83ae26ec8c77de57ae4aa9f9651.png",
-        timestamp: 1453268259.212362
+        timestamp: 1453268259
     }];
     $scope.baobao = $scope.messages;
     $scope.online = $scope.baobao;
@@ -61,6 +61,7 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
         }
         $scope.lcbMessagesHeight = $('div.lcb-chat').height() - 150;
         $scope.$apply();
+        CheckTime();
         var Box = document.getElementsByClassName('lcb-messages')[0];
         Box.scrollTop = Box.scrollHeight;
     };

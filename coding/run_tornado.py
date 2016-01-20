@@ -71,7 +71,7 @@ class Chat(tornado.websocket.WebSocketHandler):
                 #     self[km] = vm
 
     def SendAllMSG(self, msg):
-        data = {'msgFrom': {'nick': self.nick, 'timestamp': time.time(), 'uid': self.userID, 'msg': msg,
+        data = {'msgFrom': {'nick': self.nick, 'timestamp': int(time.time()), 'uid': self.userID, 'msg': msg,
                             'avatar': self.avatar}}
         for u in Chat.users:
             us = Chat.users[u]
