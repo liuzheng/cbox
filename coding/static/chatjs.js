@@ -20,7 +20,9 @@ NgAPP.directive('ngEnter', function () {
     };
 });
 NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
-    var sock = new WebSocket("ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws");
+    var sockURL =  "ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws";
+    sockURL="ws://cbox.coding.io/ws";
+    var sock = new WebSocket(sockURL);
     sock.onopen = function () {
 
     };

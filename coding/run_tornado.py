@@ -21,9 +21,9 @@ import json
 import time
 
 settings = {
-    "static_path": os.path.join(os.path.dirname(__file__), "./static/"),
-    "cookie_secret": "--------------------------------------------",
-    "debug": True,
+    # "static_path": os.path.join(os.path.dirname(__file__), "./static/"),
+    # "cookie_secret": "--------------------------------------------",
+    "debug": False,
 }
 
 
@@ -42,8 +42,6 @@ class Chat(tornado.websocket.WebSocketHandler):
         for u in Chat.users:
             us = Chat.users[u]
             user.append({'nick': us.nick, 'uid': us.userID, 'avatar': us.avatar})
-        # data = {'users': {'id': self.userID, 'nick': self.nick, 'online': user}}
-        # return data
         for u in Chat.users:
             us = Chat.users[u]
             us.write_message(json.dumps({'online': user}))
@@ -59,24 +57,18 @@ class Chat(tornado.websocket.WebSocketHandler):
         Chat.users[self.userID] = self
         self.myInfo()
         self.Online()
-        # self.pty()
 
     def on_message(self, msg):
         msg = json.loads(msg)
         for k in msg:
             if k == 'msg':
                 self.SendAllMSG(msg[k])
-                # elif k == 'myinfo':
-                # for km, vm in v:
-                #     self[km] = vm
 
     def SendAllMSG(self, msg):
         data = {'msgFrom': {'nick': self.nick, 'timestamp': int(time.time()), 'uid': self.userID, 'msg': msg,
                             'avatar': self.avatar}}
         for u in Chat.users:
             us = Chat.users[u]
-            # if us.userID == self.userID:
-            #     continue
             us.write_message(json.dumps(data))
 
     def on_close(self):
@@ -84,6 +76,11 @@ class Chat(tornado.websocket.WebSocketHandler):
         del Chat.users[self.userID]
         self.Online()
         self.close()
+class hello(tornado.web.RequestHandler):
+    def get(self):
+        self.write("Hello, world")
+
+
 
 
 def main():
@@ -91,9 +88,7 @@ def main():
     tornado.options.parse_command_line()
     application = tornado.web.Application([
         ('/ws', Chat),
-        (r"/()", tornado.web.StaticFileHandler, dict(path=os.path.join(os.path.dirname(__file__),
-                                                                       "static/index.html"))),
-        (r"/(.*)", tornado.web.StaticFileHandler, dict(path=os.path.join(os.path.dirname(__file__), "static"))),
+        (r"/.*", hello),
     ], **settings)
 
     server = tornado.httpserver.HTTPServer(application)
