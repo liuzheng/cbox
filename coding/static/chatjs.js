@@ -8,13 +8,13 @@ $(document).ready(function () {
 //            sock.send('T' + termID);
         //sock.send('C' + rc.x.toString() + "," + rc.y.toString());
     };
- $('button.lcb-entry-button')[0].onclick=function () {
-            var msg = $('textarea.lcb-entry-input').val();
-            if (msg){
-                sock.send(JSON.stringify({'msg':msg}));
-            }
-
+    $('button.lcb-entry-button')[0].onclick = function () {
+        var msg = $('textarea.lcb-entry-input').val();
+        if (msg) {
+            sock.send(JSON.stringify({'msg': msg}));
         }
+
+    };
     sock.onclose = function () {
         sock = new WebSocket("ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws");
         sock.onopen = function () {
@@ -24,7 +24,7 @@ $(document).ready(function () {
     var nick, online, uid, avatar;
     sock.onmessage = function (e) {
         var data = JSON.parse(e.data);
-        for (i in data) {
+        for (var i in data) {
             if (i == 'myinfo') {
                 nick = data[i]['nick'];
                 uid = data[i]['uid'];
