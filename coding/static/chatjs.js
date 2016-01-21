@@ -20,8 +20,8 @@ NgAPP.directive('ngEnter', function () {
     };
 });
 NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
-    var sockURL =  "ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws";
-    sockURL="ws://cbox.coding.io/ws";
+    var sockURL = "ws://" + document.URL.match(RegExp('//(.*?)/'))[1] + "/ws";
+    sockURL = "ws://cbox.coding.io/ws";
     var sock = new WebSocket(sockURL);
     sock.onopen = function () {
 
@@ -50,15 +50,17 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
     sock.onmessage = function (e) {
         var data = JSON.parse(e.data);
         for (var i in data) {
-            if (i == 'myinfo') {
-                $scope.me['nick'] = data[i]['nick'];
-                $scope.me['uid'] = data[i]['uid'];
-                $scope.me['avatar'] = data[i]['avatar'];
-            } else if (i == 'online') {
-                $scope.online = [].concat($scope.baobao, data[i]);
-            } else if (i == 'msgFrom') {
-                $scope.messages.push(data[i]);
+            if (data.hasOwnProperty(i)) {
+                if (i == 'myinfo') {
+                    $scope.me['nick'] = data[i]['nick'];
+                    $scope.me['uid'] = data[i]['uid'];
+                    $scope.me['avatar'] = data[i]['avatar'];
 
+                } else if (i == 'online') {
+                    $scope.online = [].concat($scope.baobao, data[i]);
+                } else if (i == 'msgFrom') {
+                    $scope.messages.push(data[i]);
+                }
             }
         }
         $scope.lcbMessagesHeight = $('div.lcb-chat').height() - 150;
