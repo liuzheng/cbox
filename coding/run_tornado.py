@@ -3,11 +3,9 @@
 #  Copyright (c) 2016
 #  Gmail:liuzheng712
 
-import sys
-import os
-
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
-
+import uuid
+import json
+import time
 import tornado.options
 import tornado.ioloop
 import tornado.web
@@ -16,9 +14,6 @@ import tornado.template
 import tornado.auth
 import tornado.websocket
 import tornado.httpserver
-import uuid
-import json
-import time
 
 settings = {
     # "static_path": os.path.join(os.path.dirname(__file__), "./static/"),
@@ -47,13 +42,15 @@ class Chat(tornado.websocket.WebSocketHandler):
             us.write_message(json.dumps({'online': user}))
 
     def myInfo(self):
-        self.write_message(json.dumps({'myinfo': {'uid': self.userID, 'nick': self.nick, 'avatar': self.avatar}}))
+        self.write_message(
+            json.dumps({'myinfo': {'uid': self.userID, 'nick': self.nick, 'avatar': self.avatar, 'email': self.email}}))
 
     def open(self):
         print "term socket open"
         self.userID = str(uuid.uuid4())
         self.nick = 'Anonymous'
         self.avatar = 'http://2.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?30'
+        self.email = "Your Email"
         Chat.users[self.userID] = self
         self.myInfo()
         self.Online()
@@ -76,11 +73,11 @@ class Chat(tornado.websocket.WebSocketHandler):
         del Chat.users[self.userID]
         self.Online()
         self.close()
+
+
 class hello(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
-
-
 
 
 def main():

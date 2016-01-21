@@ -3,8 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <title>Chat</title>
-    <!--<link rel="stylesheet" href="./vendor-03e2c9e33cb8db1111f1acf99460cca7.css">-->
-    <!--<link rel="stylesheet" href="http://localhost:5000/media/dist/style-1332c360811c6c28bfb38293c19f710e.css">-->
     <link rel="stylesheet" href="chat.css">
     <script src="jquery-1.12.0.min.js"></script>
     <script src="moment.min.js"></script>
@@ -39,7 +37,8 @@
             </li>
         </ul>
         <div class="lcb-entry">
-            <textarea class="lcb-entry-input" placeholder="Got something to say?" autofocus ng-enter="sendMSG()" ng-model="msg"></textarea>
+            <textarea class="lcb-entry-input" placeholder="Got something to say?" autofocus ng-enter="sendMSG()"
+                      ng-model="msg"></textarea>
             <button class="lcb-entry-button" aria-label="Send" ng-click="sendMSG()">
                 <i class="fa fa-paper-plane"></i>
             </button>
@@ -82,10 +81,10 @@
                         <img class="lcb-avatar lcb-room-sidebar-user-avatar lcb-room-poke" src="{[{me.avatar}]}">
 
                         <div class="lcb-room-sidebar-user-meta lcb-room-poke">
-            <input type="text" class="lcb-room-sidebar-user-name" ng-model="me.nick" style="border: none" ng-enter="updateInfo()">
-            <span class="lcb-room-sidebar-user-username">
-                @{[{me.nick}]}
-            </span>
+                            <input type="text" class="lcb-room-sidebar-user-name" ng-model="me.nick"
+                                   style="border: none" ng-enter="updateInfo()">
+                            <input type="email" class="lcb-room-sidebar-user-username" ng-model="me.email"
+                                   style="border:none;" ng-enter="updateInfo()">
                         </div>
                     </li>
                 </ul>

@@ -21,7 +21,8 @@ NgAPP.directive('ngEnter', function () {
 });
 NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
     var sockURL = "ws://" + document.URL.match(new RegExp('//(.*?)/'))[1] + "/ws";
-    sockURL = "ws://cbox.coding.io/ws";
+    //sockURL = "ws://cbox.coding.io/ws";
+    sockURL = "ws://localhost:8000/ws";
     var sock = new WebSocket(sockURL);
     sock.onopen = function () {
 
@@ -55,9 +56,11 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
                     $scope.me['nick'] = data[i]['nick'];
                     $scope.me['uid'] = data[i]['uid'];
                     $scope.me['avatar'] = data[i]['avatar'];
-
+                    $scope.me['email'] = data[i]['email'];
+console.log($scope.me)
                 } else if (i == 'online') {
                     $scope.online = [].concat($scope.baobao, data[i]);
+                    console.log($scope.online)
                 } else if (i == 'msgFrom') {
                     $scope.messages.push(data[i]);
                 }
@@ -69,4 +72,12 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
         var Box = document.getElementsByClassName('lcb-messages')[0];
         Box.scrollTop = Box.scrollHeight;
     };
+    $scope.$watch("me['email']", function () {
+        console.log($scope.me['email'])
+    });
+    $scope.updateInfo= function () {
+        if ($scope.me['nick'] && $scope.me['email'].match(/^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i)) {
+            sock.send(JSON.stringify({'updateInfo':{'nick': $scope.me['nick'],'email':$scope.me['email']}}));
+        }
+    }
 });
