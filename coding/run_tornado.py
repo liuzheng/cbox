@@ -26,14 +26,16 @@ settings = {
 class Chat(tornado.websocket.WebSocketHandler):
     users = dict()
 
-    def allow_draft76(self):
+    @staticmethod
+    def allow_draft76():
         # for iOS 5.0 Safari
         return True
 
     def check_origin(self, origin):
         return True
 
-    def Online(self):
+    @staticmethod
+    def on_line():
         user = []
         for u in Chat.users:
             us = Chat.users[u]
@@ -42,7 +44,7 @@ class Chat(tornado.websocket.WebSocketHandler):
             us = Chat.users[u]
             us.write_message(json.dumps({'online': user}))
 
-    def myInfo(self):
+    def my_info(self):
         self.write_message(
             json.dumps({'myinfo': {'uid': self.userID, 'nick': self.nick, 'avatar': self.avatar, 'email': self.email}}))
 
@@ -53,17 +55,18 @@ class Chat(tornado.websocket.WebSocketHandler):
         i = identicons.Identicon(str(self.request.remote_ip))
         self.avatar = 'data:image/gif;base64,' + i.base64()
         self.email = "Your Email"
+        self.userID = str(uuid.uuid4())
         Chat.users[self.userID] = self
-        self.myInfo()
-        self.Online()
+        self.my_info()
+        self.on_line()
 
     def on_message(self, msg):
         msg = json.loads(msg)
         for k in msg:
             if k == 'msg':
-                self.SendAllMSG(msg[k])
+                self.send_all_message(msg[k])
 
-    def SendAllMSG(self, msg):
+    def send_all_message(self, msg):
         data = {'msgFrom': {'nick': self.nick, 'timestamp': int(time.time()), 'uid': self.userID, 'msg': msg,
                             'avatar': self.avatar}}
         for u in Chat.users:
@@ -73,11 +76,11 @@ class Chat(tornado.websocket.WebSocketHandler):
     def on_close(self):
         print "term close"
         del Chat.users[self.userID]
-        self.Online()
+        self.on_line()
         self.close()
 
 
-class hello(tornado.web.RequestHandler):
+class Hello(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
 
@@ -87,7 +90,7 @@ def main():
     tornado.options.parse_command_line()
     application = tornado.web.Application([
         ('/ws', Chat),
-        (r"/.*", hello),
+        (r"/.*", Hello),
     ], **settings)
 
     server = tornado.httpserver.HTTPServer(application)
