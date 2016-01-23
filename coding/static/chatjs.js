@@ -42,7 +42,7 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
         msg: "请文明聊天，如让宝宝不开心，宝宝将剥夺你讲话的权利",
         nick: "宝宝",
         uid: "null",
-        avatar: "https://github.com/identicons/2660e83ae26ec8c77de57ae4aa9f9651.png",
+        avatar: "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAABuCAIAAABJObGsAAABlklEQVR4nO3c0U3DMBRAUYoYjhUYgmkYghUYgp3KBo5UH8suuue3UtJexVKs1+T2e7+/RHjd/QX+j1IypWRKyZSSKSVTSqaUTCmZt/HHH+9fM0f//vlcdORd5x0cuauSKSVTSqaUTCmZUjKlZErJlJK52O1MWrqlOe28t3Vjsl0dLw02fzNa4EwpmVIypWRKyZSSKSVTSubiFv3Y2+xdBrf3azeOYzPDrF0DuIEWOFNKppRMKZlSMqVkSsmUkiklU0qmlEwpmVIypWRKyZSSKSVTSmbnQGJmcnDg0Gk25ZaHjc48cgucKSVTSqaUTCmZUjKlZErJlJIpJVNKppRMKZlSMqVkSsmUkiklMzuQOHDGcmnRd75IOX6g/9inaxY9ETTWAmdKyZSSKSVTSqaUTCmZUjI7/8k29nT7qIXvZJuxbk+yTgucKSVTSqaUTCmZUjKlZErJzL6T7eFb5V0DibGZ33vuxvHAt66NtcCZUjKlZErJlJIpJVNKppRMKZlDZzvPqKuSKSVTSqaUTCmZUjKlZErJ/AE0NVHdPehbHQAAAABJRU5ErkJggg==",
         timestamp: 1453268259
     }];
     $scope.baobao = $scope.messages;

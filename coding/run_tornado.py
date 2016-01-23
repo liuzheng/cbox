@@ -14,6 +14,7 @@ import tornado.template
 import tornado.auth
 import tornado.websocket
 import tornado.httpserver
+import identicons
 
 settings = {
     # "static_path": os.path.join(os.path.dirname(__file__), "./static/"),
@@ -49,7 +50,8 @@ class Chat(tornado.websocket.WebSocketHandler):
         print "term socket open"
         self.userID = str(uuid.uuid4())
         self.nick = 'Anonymous'
-        self.avatar = 'http://2.gravatar.com/avatar/767fc9c115a1b989744c755db47feb60?30'
+        i = identicons.Identicon(str(self.request.remote_ip))
+        self.avatar = 'data:image/gif;base64,' + i.base64()
         self.email = "Your Email"
         Chat.users[self.userID] = self
         self.myInfo()
