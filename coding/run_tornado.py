@@ -58,7 +58,7 @@ class Chat(tornado.websocket.WebSocketHandler):
 
     def open(self):
         print "term socket open"
-        online = self.on_line()
+        online = self.uids()
         try:
             if str(self.get_cookie('uid')) in online:
                 us = online[self.get_cookie('uid')]
@@ -66,7 +66,6 @@ class Chat(tornado.websocket.WebSocketHandler):
                 self.nick = us.nick
                 self.avatar = us.avatar
                 self.email = us.email
-                self.write_message = us.write_message
                 self.my_info()
                 self.on_line()
             else:
