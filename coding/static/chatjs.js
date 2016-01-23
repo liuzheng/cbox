@@ -39,7 +39,7 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
         };
     };
     $scope.messages = [{
-        msg: "请文明聊天，如让宝宝不开心，宝宝将剥夺你讲话的权利",
+        msg: "请文明聊天，如让宝宝不开心，宝宝会打你！",
         nick: "宝宝",
         uid: "null",
         avatar: "data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAABuCAIAAABJObGsAAABlklEQVR4nO3c0U3DMBRAUYoYjhUYgmkYghUYgp3KBo5UH8suuue3UtJexVKs1+T2e7+/RHjd/QX+j1IypWRKyZSSKSVTSqaUTCmZt/HHH+9fM0f//vlcdORd5x0cuauSKSVTSqaUTCmZUjKlZErJlJK52O1MWrqlOe28t3Vjsl0dLw02fzNa4EwpmVIypWRKyZSSKSVTSubiFv3Y2+xdBrf3azeOYzPDrF0DuIEWOFNKppRMKZlSMqVkSsmUkiklU0qmlEwpmVIypWRKyZSSKSVTSmbnQGJmcnDg0Gk25ZaHjc48cgucKSVTSqaUTCmZUjKlZErJlJIpJVNKppRMKZlSMqVkSsmUkiklMzuQOHDGcmnRd75IOX6g/9inaxY9ETTWAmdKyZSSKSVTSqaUTCmZUjI7/8k29nT7qIXvZJuxbk+yTgucKSVTSqaUTCmZUjKlZErJzL6T7eFb5V0DibGZ33vuxvHAt66NtcCZUjKlZErJlJIpJVNKppRMKZlDZzvPqKuSKSVTSqaUTCmZUjKlZErJ/AE0NVHdPehbHQAAAABJRU5ErkJggg==",
