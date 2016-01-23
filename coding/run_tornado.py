@@ -44,21 +44,49 @@ class Chat(tornado.websocket.WebSocketHandler):
             us = Chat.users[u]
             us.write_message(json.dumps({'online': user}))
 
+    @staticmethod
+    def uids():
+        user = {}
+        for u in Chat.users:
+            us = Chat.users[u]
+            user[us.userID] = us
+        return user
+
     def my_info(self):
         self.write_message(
             json.dumps({'myinfo': {'uid': self.userID, 'nick': self.nick, 'avatar': self.avatar, 'email': self.email}}))
 
     def open(self):
         print "term socket open"
-        self.userID = str(uuid.uuid4())
-        self.nick = 'Anonymous'
-        i = identicons.Identicon(str(self.request.remote_ip))
-        self.avatar = 'data:image/gif;base64,' + i.base64()
-        self.email = "Your Email"
-        self.userID = str(uuid.uuid4())
-        Chat.users[self.userID] = self
-        self.my_info()
-        self.on_line()
+        online = self.on_line()
+        try:
+            if str(self.get_cookie('uid')) in online:
+                us = online[self.get_cookie('uid')]
+                self.userID = us.userID
+                self.nick = us.nick
+                self.avatar = us.avatar
+                self.email = us.email
+                self.write_message = us.write_message
+                self.my_info()
+                self.on_line()
+            else:
+                self.userID = str(uuid.uuid4())
+                self.nick = 'Anonymous'
+                i = identicons.Identicon(str(self.request.remote_ip))
+                self.avatar = 'data:image/gif;base64,' + i.base64()
+                self.email = "Your Email"
+                Chat.users[self.userID] = self
+                self.my_info()
+                self.on_line()
+        except:
+            self.userID = str(uuid.uuid4())
+            self.nick = 'Anonymous'
+            i = identicons.Identicon(str(self.request.remote_ip))
+            self.avatar = 'data:image/gif;base64,' + i.base64()
+            self.email = "Your Email"
+            Chat.users[self.userID] = self
+            self.my_info()
+            self.on_line()
 
     def on_message(self, msg):
         msg = json.loads(msg)

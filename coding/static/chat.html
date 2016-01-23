@@ -11,7 +11,7 @@
 <body>
 <div ng-app="Chat" ng-controller="chatBoxCtrl">
     <div class="lcb-chat">
-        <div class="lcb-chat-header">
+        <div class="lcb-chat-header" ng-click="toggle()">
             <p>CBox</p>
         </div>
 
@@ -95,6 +95,7 @@
     </div>
 </div>
 <script src="angular.min.js"></script>
+<script src="angular-cookies.min.js"></script>
 <script src="chatjs.js"></script>
 </body>
 </html>

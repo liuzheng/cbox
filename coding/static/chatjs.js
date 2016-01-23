@@ -2,7 +2,7 @@
  * Created by liuzheng on 1/18/16.
  */
 'use strict';
-var NgAPP = angular.module('Chat', []);
+var NgAPP = angular.module('Chat', ['ngCookies']);
 NgAPP.config(function ($interpolateProvider) {
     $interpolateProvider.startSymbol('{[{');
     $interpolateProvider.endSymbol('}]}');
@@ -19,7 +19,7 @@ NgAPP.directive('ngEnter', function () {
         });
     };
 });
-NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
+NgAPP.controller('chatBoxCtrl', function ($scope, $http, $cookies) {
     var sockURL = "ws://" + document.URL.match(new RegExp('//(.*?)/'))[1] + "/ws";
     //sockURL = "ws://cbox.coding.io/ws";
     sockURL = "ws://localhost:8000/ws";
@@ -30,6 +30,7 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
     $scope.sendMSG = function () {
         if ($scope.msg) {
             sock.send(JSON.stringify({'msg': $scope.msg}));
+            $scope.msg=''
         }
 
     };
@@ -57,10 +58,14 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http) {
                     $scope.me['uid'] = data[i]['uid'];
                     $scope.me['avatar'] = data[i]['avatar'];
                     $scope.me['email'] = data[i]['email'];
-console.log($scope.me)
+//console.log($scope.me);
+                    $cookies['uid'] = $scope.me['uid'];
+                    //TODO: set this cookie to the domain of websocket
+                    console.log($cookies)
+                    //$cookies['uid']['Domain']="ws://" + document.URL.match(new RegExp('//(.*?)/'))[1];
                 } else if (i == 'online') {
                     $scope.online = [].concat($scope.baobao, data[i]);
-                    console.log($scope.online)
+                    //console.log($scope.online)
                 } else if (i == 'msgFrom') {
                     $scope.messages.push(data[i]);
                 }
@@ -73,11 +78,20 @@ console.log($scope.me)
         Box.scrollTop = Box.scrollHeight;
     };
     $scope.$watch("me['email']", function () {
-        console.log($scope.me['email'])
+        //console.log($scope.me['email'])
     });
-    $scope.updateInfo= function () {
+    $scope.updateInfo = function () {
         if ($scope.me['nick'] && $scope.me['email'].match(/^[a-z]([a-z0-9]*[-_]?[a-z0-9]+)*@([a-z0-9]*[-_]?[a-z0-9]+)+[\.][a-z]{2,3}([\.][a-z]{2})?$/i)) {
-            sock.send(JSON.stringify({'updateInfo':{'nick': $scope.me['nick'],'email':$scope.me['email']}}));
+            sock.send(JSON.stringify({'updateInfo': {'nick': $scope.me['nick'], 'email': $scope.me['email']}}));
+        }
+    };
+    $scope.toggle = function () {
+        if ($('div.lcb-chat').height() > 31) {
+            $('div.lcb-chat').height(31);
+            $('div.lcb-entry').hide()
+        } else {
+            $('div.lcb-entry').show();
+            $('div.lcb-chat').height('99%')
         }
     }
 });
