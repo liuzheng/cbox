@@ -18,7 +18,7 @@ import identicons
 
 settings = {
     # "static_path": os.path.join(os.path.dirname(__file__), "./static/"),
-    # "cookie_secret": "--------------------------------------------",
+    "cookie_secret": "--------------------------------------------",
     "debug": False,
 }
 
