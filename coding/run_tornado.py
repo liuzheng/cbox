@@ -89,6 +89,8 @@ class Chat(tornado.websocket.WebSocketHandler):
 
     def on_message(self, msg):
         msg = json.loads(msg)
+        print(self.get_cookie('uid'))
+
         for k in msg:
             if k == 'msg':
                 self.send_all_message(msg[k])

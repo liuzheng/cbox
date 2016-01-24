@@ -61,7 +61,6 @@ NgAPP.controller('chatBoxCtrl', function ($scope, $http, $cookies) {
 //console.log($scope.me);
                     $cookies['uid'] = $scope.me['uid'];
                     //TODO: set this cookie to the domain of websocket
-                    console.log($cookies)
                     //$cookies['uid']['Domain']="ws://" + document.URL.match(new RegExp('//(.*?)/'))[1];
                 } else if (i == 'online') {
                     $scope.online = [].concat($scope.baobao, data[i]);
